@@ -1,11 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 const ai = new GoogleGenAI({
-<<<<<<< HEAD
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY, // Never expose this on frontend!
-=======
-  apiKey: "apikey";
->>>>>>> 75c854c4125dc0ddc08fdafcccfba66c321c065f
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY, // Correct key name
 });
 
 async function main(prompt) {
@@ -17,10 +13,7 @@ async function main(prompt) {
 
     console.log("Full Gemini Response:", response);
 
-    // The actual content is in `response.response.candidates[0].content.parts[0].text`
-    return (
-        response?.candidates?.[0]?.content?.parts?.[0]?.text
-        );
+    return response?.response?.candidates?.[0]?.content?.parts?.[0]?.text;
   } catch (error) {
     console.error("Error in AI call:", error);
     return null;
