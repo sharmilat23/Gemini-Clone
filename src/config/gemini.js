@@ -1,9 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
-import dotenv from "dotenv";
-dotenv.config();
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API,
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY, // Correct key name
 });
 
 async function main(prompt) {
@@ -15,7 +13,7 @@ async function main(prompt) {
 
     console.log("Full Gemini Response:", response);
 
-    return response?.response?.candidates?.[0]?.content?.parts?.[0]?.text;
+    return response?.candidates?.[0]?.content?.parts?.[0]?.text;
   } catch (error) {
     console.error("Error in AI call:", error);
     return null;
